@@ -32,19 +32,10 @@ resource "random_string" "mtstring" {
 
 }
 
-
-  variable "instance_count" {
-  default = 3
-}
-
 resource "aws_instance" "myinstance" {
 
   ami           = var.myami
   instance_type = var.myinstance
-  count = var.instance_count
-    lifecycle {
-    create_before_destroy = true
-  }
   security_groups = [aws_security_group.mysg.name]
   user_data     = <<-EOF
               #!/bin/bash
@@ -55,6 +46,6 @@ resource "aws_instance" "myinstance" {
               systemctl enable nginx
               EOF
   tags = {
-    Name = "tom-${random_string.mtstring.result}-${count.index + 1}"
+    Name = "tom-${random_string.mtstring.result}"
   }
 }
