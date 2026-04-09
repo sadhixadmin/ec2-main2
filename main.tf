@@ -41,7 +41,7 @@ resource "aws_instance" "myinstance" {
               #!/bin/bash
               apt update -y
               apt install nginx -y
-              echo "<html><body><h1>Welcome to Terraform</h1></body></html>" > /var/www/html/index.html
+              echo "<html><body><h1>Welcome to Terraform workflow</h1></body></html>" > /var/www/html/index.html
               systemctl start nginx
               systemctl enable nginx
               EOF
